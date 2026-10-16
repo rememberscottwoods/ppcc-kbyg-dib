@@ -1,0 +1,785 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An unofficial PPCC 2026 Know Before You Go guide for Defense Industrial Base and government customers.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 54 12v17c0 14-9 25-22 31C19 54 10 43 10 29V12l22-8Z' fill='%23b11f4b'/%3E%3Cpath d='m22 32 7 7 14-17' fill='none' stroke='white' stroke-width='5'/%3E%3C/svg%3E">
+  <title>PPCC 2026 DIB Know Before You Go</title>
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cp-bg);
+      color: var(--cp-text);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.55;
+    }
+    a { color: var(--cp-link); }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    .skip {
+      position: absolute;
+      left: 16px;
+      top: -80px;
+      z-index: 50;
+      padding: 10px 14px;
+      border-radius: 0.625rem;
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+    }
+    .skip:focus { top: 12px; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid var(--cp-border);
+      background: var(--cp-panel-strong);
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      width: min(1180px, calc(100% - 32px));
+      min-height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--cp-text);
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--cp-accent);
+      border-radius: 0.625rem;
+      color: var(--cp-accent);
+      background: var(--cp-accent-soft);
+    }
+    .brand small {
+      display: block;
+      color: var(--cp-text-muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    nav { display: flex; align-items: center; gap: 4px; }
+    nav a {
+      padding: 9px 10px;
+      border-radius: 0.625rem;
+      color: var(--cp-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    nav a:hover, nav a:focus-visible, nav a.active {
+      color: var(--cp-accent);
+      background: var(--cp-accent-soft);
+    }
+    .menu-button {
+      display: none;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      background: var(--cp-surface);
+      padding: 9px 12px;
+      cursor: pointer;
+    }
+    main { overflow: hidden; }
+    section { scroll-margin-top: 88px; }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .hero { padding: 72px 0 56px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--cp-accent);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { line-height: 1.12; letter-spacing: -0.025em; }
+    h1 { max-width: 840px; margin: 0; font-size: clamp(2.4rem, 7vw, 5.5rem); }
+    h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.3rem); }
+    h3 { margin: 0; font-size: 1.2rem; }
+    .hero-copy {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: var(--cp-text-muted);
+      font-size: 1.13rem;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--cp-accent);
+      border-radius: 0.625rem;
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .button:hover { background: var(--cp-accent-hover); }
+    .button.secondary {
+      background: var(--cp-surface);
+      color: var(--cp-accent);
+    }
+    .mission-card {
+      position: relative;
+      padding: 28px;
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      background: var(--cp-surface);
+      overflow: hidden;
+    }
+    .mission-card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -60px;
+      bottom: -60px;
+      border: 26px solid var(--cp-accent-soft);
+      border-radius: 50%;
+    }
+    .mission-card strong { display: block; color: var(--cp-accent); font-size: 2rem; }
+    .mission-card p { margin: 4px 0 18px; color: var(--cp-text-muted); }
+    .mission-card ul { padding-left: 20px; margin: 0; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .stat {
+      padding: 18px;
+      border-left: 3px solid var(--cp-accent);
+      background: var(--cp-bg-elevated);
+    }
+    .stat strong { display: block; font-size: 1.45rem; }
+    .stat span { color: var(--cp-text-muted); font-size: 0.88rem; }
+    .section { padding: 76px 0; border-top: 1px solid var(--cp-border); }
+    .section.alt { background: var(--cp-bg-elevated); }
+    .section-intro {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+    .section-intro p:last-child {
+      max-width: 610px;
+      margin: 0;
+      color: var(--cp-text-muted);
+    }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .panel {
+      padding: 24px;
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      background: var(--cp-surface);
+    }
+    .panel .kicker, .day .kicker {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--cp-accent);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .panel p, .panel li { color: var(--cp-text-muted); }
+    .panel ul { margin: 14px 0 0; padding-left: 20px; }
+    .callout {
+      margin-top: 16px;
+      padding: 18px 20px;
+      border: 1px solid var(--cp-accent);
+      border-radius: 0.625rem;
+      background: var(--cp-accent-soft);
+    }
+    .callout strong { color: var(--cp-accent); }
+    .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--cp-border); border: 1px solid var(--cp-border); }
+    .timeline article { padding: 24px; background: var(--cp-surface); }
+    .timeline time { color: var(--cp-accent); font-weight: 800; }
+    .timeline p { margin: 8px 0 0; color: var(--cp-text-muted); }
+    .pickup { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    .pickup th, .pickup td { padding: 10px 8px; border-bottom: 1px solid var(--cp-border); text-align: left; }
+    .pickup th { color: var(--cp-text-muted); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .session-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin: 0 0 22px;
+    }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter {
+      padding: 8px 12px;
+      border: 1px solid var(--cp-border);
+      border-radius: 999px;
+      background: var(--cp-surface);
+      cursor: pointer;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+    .filter:hover, .filter.active {
+      border-color: var(--cp-accent);
+      color: var(--cp-accent);
+      background: var(--cp-accent-soft);
+    }
+    .search {
+      flex: 1;
+      min-width: 220px;
+      min-height: 42px;
+      padding: 9px 12px;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      background: var(--cp-surface);
+      color: var(--cp-text);
+    }
+    .session-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .session-card {
+      display: flex;
+      min-height: 280px;
+      flex-direction: column;
+      padding: 22px;
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      background: var(--cp-surface);
+    }
+    .session-card.priority { border-top: 4px solid var(--cp-accent); }
+    .tag {
+      align-self: flex-start;
+      margin-bottom: 14px;
+      padding: 5px 8px;
+      border-radius: 0.625rem;
+      background: var(--cp-accent-soft);
+      color: var(--cp-accent);
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .session-card p { margin: 12px 0 20px; color: var(--cp-text-muted); }
+    .session-card a { margin-top: auto; font-weight: 800; }
+    .empty {
+      grid-column: 1 / -1;
+      padding: 34px;
+      border: 1px dashed var(--cp-border-strong);
+      text-align: center;
+      color: var(--cp-text-muted);
+    }
+    .days { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .day { padding: 26px; border-top: 5px solid var(--cp-accent); background: var(--cp-surface); }
+    .day ol { margin: 18px 0 0; padding-left: 20px; }
+    .day li { margin: 10px 0; color: var(--cp-text-muted); }
+    .faq { display: grid; gap: 10px; }
+    details {
+      padding: 18px 20px;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      background: var(--cp-surface);
+    }
+    summary { cursor: pointer; font-weight: 800; }
+    details p { margin: 12px 0 0; color: var(--cp-text-muted); }
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--cp-border);
+      background: var(--cp-bg-elevated);
+    }
+    .footer-inner { display: flex; justify-content: space-between; gap: 32px; }
+    .footer-inner p { max-width: 800px; margin: 0; color: var(--cp-text-muted); font-size: 0.88rem; }
+    .footer-links { display: flex; gap: 14px; white-space: nowrap; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 900px) {
+      .menu-button { display: inline-flex; }
+      nav {
+        position: absolute;
+        display: none;
+        top: 72px;
+        left: 0;
+        right: 0;
+        padding: 12px 16px 18px;
+        flex-direction: column;
+        align-items: stretch;
+        border-bottom: 1px solid var(--cp-border);
+        background: var(--cp-panel-strong);
+      }
+      nav.open { display: flex; }
+      .hero-grid, .grid-3, .session-grid, .days { grid-template-columns: 1fr 1fr; }
+      .mission-card { grid-column: span 1; }
+      .stats, .timeline { grid-template-columns: 1fr 1fr; }
+      .section-intro { display: block; }
+      .section-intro p:last-child { margin-top: 12px; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding-top: 44px; }
+      .hero-grid, .grid-3, .grid-2, .session-grid, .days, .stats, .timeline { grid-template-columns: 1fr; }
+      .footer-inner { display: block; }
+      .footer-links { margin-top: 18px; }
+      .section { padding: 58px 0; }
+    }
+    @media print {
+      header, .hero-actions, .session-tools { display: none; }
+      body { background: var(--cp-surface); }
+      .section { break-inside: avoid; padding: 24px 0; }
+      .session-grid { grid-template-columns: repeat(2, 1fr); }
+      .session-card { min-height: 0; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="#start" aria-label="PPCC 2026 DIB Know Before You Go">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 20 5v6c0 5-3.2 8.9-8 11-4.8-2.1-8-6-8-11V5l8-3Z" stroke="currentColor" stroke-width="1.8"></path>
+            <path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8"></path>
+          </svg>
+        </span>
+        <span>PPCC 2026 <small>DIB Know Before You Go</small></span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="guide-nav">Menu</button>
+      <nav id="guide-nav" aria-label="Guide sections">
+        <a href="#start" class="active">Start Here</a>
+        <a href="#before">Before You Go</a>
+        <a href="#ground">On the Ground</a>
+        <a href="#sessions">DIB Sessions</a>
+        <a href="#days">Mission Plan</a>
+        <a href="#faq">FAQ &amp; Links</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="start">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Unofficial customer companion · October 27-29, 2026</p>
+            <h1>Build for the mission. Govern for the enterprise.</h1>
+            <p class="hero-copy">A DIB-focused guide to PPCC 2026 for defense contractors, federal delivery teams, security leaders, architects, and makers moving Power Platform and agents from prototype to trusted production.</p>
+            <div class="hero-actions">
+              <a class="button" href="#sessions">Explore DIB sessions</a>
+              <a class="button secondary" href="https://powerplatformconf.com/sessions" target="_blank" rel="noreferrer">Browse all official sessions</a>
+            </div>
+          </div>
+          <aside class="mission-card" aria-label="Conference essentials">
+            <strong>Las Vegas</strong>
+            <p>MGM Grand · October 27-29</p>
+            <ul>
+              <li>Opening keynote: Tuesday at 8:30 AM</li>
+              <li>Over 200 sessions across apps, agents, data, and automation</li>
+              <li>DIB lens: identity, isolation, governance, resilience, and mission value</li>
+            </ul>
+          </aside>
+        </div>
+        <div class="stats" aria-label="Guide summary">
+          <div class="stat"><strong>224</strong><span>published sessions reviewed</span></div>
+          <div class="stat"><strong>24</strong><span>DIB-relevant picks curated</span></div>
+          <div class="stat"><strong>5</strong><span>mission lenses</span></div>
+          <div class="stat"><strong>Public</strong><span>no customer sign-in required</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="before">
+      <div class="wrap">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">Before you go</p>
+            <h2>Arrive with a mission question</h2>
+          </div>
+          <p>The strongest conversations start with a deployment boundary, a control requirement, or an operational outcome—not a generic product tour.</p>
+        </div>
+        <div class="grid-3">
+          <article class="panel">
+            <span class="kicker">01 · Frame</span>
+            <h3>Bring one production scenario</h3>
+            <ul>
+              <li>Who acts, on what data, and with which identity?</li>
+              <li>What must remain private, isolated, or auditable?</li>
+              <li>What outcome would prove mission value?</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <span class="kicker">02 · Map</span>
+            <h3>Know your boundaries</h3>
+            <ul>
+              <li>Tenant and environment strategy</li>
+              <li>DLP, connectors, endpoints, and network paths</li>
+              <li>ALM, source control, monitoring, and support ownership</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <span class="kicker">03 · Prepare</span>
+            <h3>Pack for a working conference</h3>
+            <ul>
+              <li>Comfortable shoes and a layer for cold rooms</li>
+              <li>Phone charger or battery pack</li>
+              <li>Whova app, backup session choices, and meeting notes</li>
+            </ul>
+          </article>
+        </div>
+        <div class="callout"><strong>GCCH access note:</strong> This companion is a public static page with no authentication, tracking, or embedded customer data. It is designed to open from externally connected browsers, including GCCH-managed environments. Availability of linked third-party pages still depends on each organization's network policy.</div>
+      </div>
+    </section>
+
+    <section class="section" id="ground">
+      <div class="wrap">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">On the ground</p>
+            <h2>Spend time on conversations, not navigation</h2>
+          </div>
+          <p>The MGM Grand is large. Pick up your badge early, allow walking time between the conference center and arena, and keep a backup for popular rooms.</p>
+        </div>
+        <div class="timeline" aria-label="Opening keynote morning plan">
+          <article><time>6:30 AM</time><h3>Check-in opens</h3><p>Tuesday badge pickup begins on the first floor of the Conference Center.</p></article>
+          <article><time>7:30 AM</time><h3>Start moving</h3><p>The Conference Center and Grand Garden Arena are not adjacent.</p></article>
+          <article><time>8:00 AM</time><h3>Doors open</h3><p>Aim to be seated 30-45 minutes before the keynote.</p></article>
+          <article><time>8:30 AM</time><h3>Opening keynote</h3><p>Charles Lamanna and Ryan Cunningham open Conference Day 1.</p></article>
+        </div>
+        <div class="grid-2" style="margin-top:16px">
+          <article class="panel">
+            <span class="kicker">Venue intelligence</span>
+            <h3>MGM Grand Conference Center</h3>
+            <p>3799 S. Las Vegas Blvd., Las Vegas, NV 89109. Harry Reid International Airport is about three miles away. The hotel does not operate an airport shuttle.</p>
+            <ul>
+              <li>Expect 10,000+ steps per day.</li>
+              <li>The casino-floor escalator to the Conference Center can bottleneck.</li>
+              <li>Upper-floor session rooms may fill quickly.</li>
+              <li>Lunch is included Tuesday through Thursday; evenings are on your own.</li>
+            </ul>
+          </article>
+          <aside class="panel">
+            <span class="kicker">Badge pickup</span>
+            <h3>Monday is the low-friction choice</h3>
+            <table class="pickup">
+              <thead><tr><th>Day</th><th>Hours</th></tr></thead>
+              <tbody>
+                <tr><td>Sunday, Oct 25</td><td>7:30 AM-2:00 PM</td></tr>
+                <tr><td>Monday, Oct 26</td><td>7:30 AM-5:00 PM</td></tr>
+                <tr><td>Tuesday, Oct 27</td><td>6:30 AM-5:00 PM</td></tr>
+                <tr><td>Wednesday, Oct 28</td><td>7:00 AM-4:00 PM</td></tr>
+                <tr><td>Thursday, Oct 29</td><td>7:00 AM-4:00 PM</td></tr>
+              </tbody>
+            </table>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="sessions">
+      <div class="wrap">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">DIB session radar</p>
+            <h2>Prioritize the sessions that survive production</h2>
+          </div>
+          <p>Official times and room assignments can change. Use this shortlist to build your Whova agenda, then confirm the live schedule before walking.</p>
+        </div>
+        <div class="session-tools">
+          <div class="filters" aria-label="Filter sessions">
+            <button class="filter active" type="button" data-filter="All">All</button>
+            <button class="filter" type="button" data-filter="Government">Government</button>
+            <button class="filter" type="button" data-filter="Secure architecture">Secure architecture</button>
+            <button class="filter" type="button" data-filter="Governance">Governance</button>
+            <button class="filter" type="button" data-filter="Production">Production</button>
+            <button class="filter" type="button" data-filter="Field &amp; mission">Field &amp; mission</button>
+          </div>
+          <label class="sr-only" for="session-search">Search sessions</label>
+          <input class="search" id="session-search" type="search" placeholder="Search the DIB shortlist">
+        </div>
+        <div class="session-grid" id="session-grid" aria-live="polite"><article class="session-card priority"><span class="tag">Priority · Government</span><h3>Operationalizing AI in Government: The Journey from Pilot to Production</h3><p>Public-sector peers on secure scale, responsible AI, monitoring, support models, adoption, and measurable impact.</p><a href="https://powerplatformconf.com/sessions/Industry-Deep-Dive-%7C-Operationalizing-AI-in-Government%3A-The-Journey-from-Pilot-to-Production" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card priority"><span class="tag">Priority · Government</span><h3>Government: Autonomy and Governance in the Age of AI and Vibe Coding</h3><p>Directly addresses decentralized innovation, DLP, environment strategy, lifecycle management, and AI-assisted development in government.</p><a href="https://powerplatformconf.com/sessions/Industry-Deep-Dive-%7C-Government%3A-Autonomy-and-Governance-in-the-Age-of-AI-and-Vibe-Coding" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card priority"><span class="tag">Priority · Government</span><h3>Government: Beyond the Hype—Delivering Real Business Value</h3><p>Customer-led discussion of sustainable value across case management, modernization, contact centers, automation, and AI-assisted processes.</p><a href="https://powerplatformconf.com/sessions/Industry-Deep-Dive-%7C-Government%3A-Beyond-the-Hype%3A-Delivering-Real-Business-Value" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card priority"><span class="tag">Priority · Government</span><h3>From Power Platform Developer to Agentic Application Engineer</h3><p>A federal delivery skills map spanning APIs, identity, Azure Functions, TypeScript, agents, ALM, DevSecOps, and enterprise architecture.</p><a href="https://powerplatformconf.com/sessions/From-Power-Platform-Developer-to-Agentic-Application-Engineer%3A-The-Technical-Skills-needed-in-Government-IT" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Secure architecture</span><h3>Building a Secure Power Platform Architecture with Managed Identity and VNet</h3><p>High-value DIB pattern: least privilege, private endpoints, managed identity, network isolation, and secure Azure integration.</p><a href="https://powerplatformconf.com/sessions/Building-a-Secure-Power-Platform-Architecture-with-Managed-Identity-and-VNet" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Secure architecture</span><h3>Develop More Secure Dataverse Plug-Ins with VNet Integration and Managed Identities</h3><p>Practical secure-connectivity patterns for code-first Dataverse extensions that reach Azure and protected resources.</p><a href="https://powerplatformconf.com/sessions/Develop-More-Secure-Dataverse-Plug-Ins-with-Virtual-Network-Integration-and-Managed-Identities" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Secure architecture</span><h3>Improve Your Power Platform Security Posture with Advisor and Security Hub</h3><p>Useful for turning platform security recommendations into a prioritized hardening backlog.</p><a href="https://powerplatformconf.com/sessions/Improve-Your-Power-Platform-Security-Posture-with-Advisor-and-Security-Hub" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Secure architecture</span><h3>Managing Security in Dataverse</h3><p>Core access model coverage: roles, privileges, access levels, teams, business units, and record-level controls.</p><a href="https://powerplatformconf.com/sessions/Managing-Security-in-Dataverse" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Secure architecture</span><h3>Right-Size &amp; Secure Your Data Estate</h3><p>Connects storage, performance, governance, compliance, capacity management, and sustainable Dataverse operations.</p><a href="https://powerplatformconf.com/sessions/Right-Size-%26-Secure-Your-Data-Estate%3A-Governing-%26-Managing-Dataverse-and-Dynamics-365" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Secure architecture</span><h3>Guardians of the Lake: Securing Your Data with OneLake</h3><p>Relevant for protecting sensitive analytical data through role, row, and column controls across a shared data estate.</p><a href="https://powerplatformconf.com/sessions/Guardians-of-the-Lake%3A-Securing-Your-Data-with-OneLake" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Governance</span><h3>Secure by Design: Preparing Agents for Production and Scale</h3><p>A security-review lens for moving agents from demo to approved production use.</p><a href="https://powerplatformconf.com/sessions/Secure-by-Design%3A-Preparing-Agents-for-Production-and-Scale" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Governance</span><h3>AI Needs Guardrails: Could Forms Be the Missing Link?</h3><p>Explores deterministic review and structured human input where generative output alone is too risky.</p><a href="https://powerplatformconf.com/sessions/AI-Needs-Guardrails%3A-Could-Forms-Be-the-Missing-Link%3F" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Governance</span><h3>From Shadow IT to Secure: Implementing Data Policies That Stick</h3><p>Policy patterns for reducing uncontrolled connectors and environments without stopping mission makers.</p><a href="https://powerplatformconf.com/sessions/From-Shadow-IT-to-Secure%3A-Implementing-Data-Policies-That-Stick" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Governance</span><h3>From Shadow AI to Tightly Managed Agentic Tools</h3><p>Directly relevant to discovery, oversight, lifecycle controls, and risk reduction for enterprise agent tools.</p><a href="https://powerplatformconf.com/sessions/From-Shadow-AI-to-Tightly-Managed-Agentic-Tools%E2%80%8B" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Governance</span><h3>Agentic Governance: Secure, Govern, and Operate Power Platform at Scale</h3><p>A post-CoE Starter Kit operating model using platform APIs and automation for governance at scale.</p><a href="https://powerplatformconf.com/sessions/Agentic-Governance%3A-Secure%2C-Govern%2C-and-Operate-Your-Power-Platform-at-Scale" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Governance</span><h3>Agent 365 Unlocked: Building a Secure and Governed Agent Ecosystem</h3><p>Strategy discussion for inventory, lifecycle, oversight, and controls across a growing agent estate.</p><a href="https://powerplatformconf.com/sessions/Agent-365-Unlocked%3A-Building-a-Secure-and-Governed-Agent-Ecosystem" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Governance</span><h3>Defining Governance for Agent Tools in the Enterprise</h3><p>Focuses on the tools agents invoke—an essential control surface beyond the agent definition itself.</p><a href="https://powerplatformconf.com/sessions/Defining-Governance-for-Agent-Tools-in-the-Enterprise" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Governance</span><h3>Managed Security: Securing Apps, Automations, and Agents at Scale</h3><p>A unified security-management view across low-code apps, workflows, and agentic workloads.</p><a href="https://powerplatformconf.com/sessions/Managed-Security%3A-Securing-and-Governing-Apps%2C-Automations%2C-and-Agents-at-Scale" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Production</span><h3>From Black Box to Glass Box: Observability for Your AI Assets</h3><p>Production readiness through traces, evaluation, telemetry, incident investigation, and operational visibility.</p><a href="https://powerplatformconf.com/sessions/From-Black-Box-to-Glass-Box%3A-Observability-for-Your-AI-Assets" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Production</span><h3>Copilot Managed Runtime: AI-Powered Development with Built-In Governance</h3><p>Examines managed runtime controls for code-forward development that still needs enterprise policy and operations.</p><a href="https://powerplatformconf.com/sessions/Microsoft-Copilot-Managed-Runtime%3A-AI-Powered-Development-with-Built-In-Governance" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Production</span><h3>DevOps in Power Platform: Build, Deploy and Operate at Enterprise Scale</h3><p>ALM and operational discipline for repeatable, reviewable deployment across environments.</p><a href="https://powerplatformconf.com/sessions/DevOps-in-Power-Platform%3A-Build%2C-Deploy-and-Operate-at-Enterprise-Scale" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Production</span><h3>Production-Ready Power Pages: Top 10 Secrets for Sites That Scale</h3><p>External-facing architecture patterns for performance, compliance, security, and scale.</p><a href="https://powerplatformconf.com/sessions/Production-Ready-Power-Pages%3A-Our-Top-10-Secrets-for-Sites-That-Scale" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Production</span><h3>Power Apps + Power Automate: Building Production-Ready Solutions</h3><p>Practical engineering habits for maintainability, resilience, performance, error handling, and support.</p><a href="https://powerplatformconf.com/sessions/Power-Apps-%2B-Power-Automate%3A-Best-Practices-for-Building-Production-Ready-Solutions" target="_blank" rel="noreferrer">View official session →</a></article><article class="session-card"><span class="tag">Field &amp; mission</span><h3>Apps in Every Pocket: The Power Apps Mobile Roadmap</h3><p>Relevant to frontline and disconnected scenarios where mission users need reliable access beyond the desk.</p><a href="https://powerplatformconf.com/sessions/Apps-in-Every-Pocket%3A-The-Power-Apps-Mobile-Roadmap" target="_blank" rel="noreferrer">View official session →</a></article></div>
+      </div>
+    </section>
+
+    <section class="section" id="days">
+      <div class="wrap">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">Mission plan</p>
+            <h2>Three days, three decisions</h2>
+          </div>
+          <p>Use the conference to leave with a clearer operating model, a defensible architecture, and a next production move. This is a decision path—not a fabricated session timetable.</p>
+        </div>
+        <div class="days">
+          <article class="day">
+            <span class="kicker">Day 1 · Govern</span>
+            <h3>Define the control plane</h3>
+            <ol>
+              <li>Start with a government or agent-governance roundtable.</li>
+              <li>Compare environment, DLP, identity, and tool governance patterns.</li>
+              <li>Capture three controls your current operating model lacks.</li>
+            </ol>
+          </article>
+          <article class="day">
+            <span class="kicker">Day 2 · Architect</span>
+            <h3>Trace the trusted path</h3>
+            <ol>
+              <li>Prioritize managed identity, VNet, Dataverse security, and OneLake controls.</li>
+              <li>Ask how telemetry and audit evidence cross service boundaries.</li>
+              <li>Sketch a reference path from user to action to data.</li>
+            </ol>
+          </article>
+          <article class="day">
+            <span class="kicker">Day 3 · Operationalize</span>
+            <h3>Move one workload forward</h3>
+            <ol>
+              <li>Focus on ALM, observability, production readiness, and field resilience.</li>
+              <li>Identify the owner for operations, adoption, and measurable value.</li>
+              <li>Leave with one 30-day experiment and a clear stop/go gate.</li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="faq">
+      <div class="wrap">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">FAQ &amp; links</p>
+            <h2>Confirm the source of truth</h2>
+          </div>
+          <p>This guide is a curated lens. The official conference site and Whova remain authoritative for session changes, rooms, registration, and event policies.</p>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Is every listed session explicitly about the DIB?</summary>
+            <p>No. Four sessions are directly government-focused; the rest were selected because their controls and operating patterns are highly relevant to regulated defense environments.</p>
+          </details>
+          <details>
+            <summary>Does a session's inclusion imply GCC High availability?</summary>
+            <p>No. Session descriptions discuss product patterns, not tenant-specific feature commitments. Validate availability, licensing, compliance scope, and roadmap claims for your exact cloud before making an architecture decision.</p>
+          </details>
+          <details>
+            <summary>Why are exact session times not shown?</summary>
+            <p>The public session catalog provides titles, descriptions, and speakers, while final time and room details may change. Use Whova as the live agenda.</p>
+          </details>
+          <details>
+            <summary>What should I ask at the Microsoft booth?</summary>
+            <p>Bring a precise scenario and ask for the supported identity flow, data boundary, network path, telemetry model, ALM pattern, and cloud-specific feature availability.</p>
+          </details>
+        </div>
+        <div class="hero-actions">
+          <a class="button" href="https://powerplatformconf.com/sessions" target="_blank" rel="noreferrer">Official sessions</a>
+          <a class="button secondary" href="https://powerplatformconf.com/faq" target="_blank" rel="noreferrer">Official FAQ</a>
+          <a class="button secondary" href="https://powerplatformconf.com/book-hotel" target="_blank" rel="noreferrer">Hotel &amp; transportation</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p>An unofficial DIB-focused companion for PPCC 2026. Session titles and links reference the public conference catalog; summaries and prioritization are editorial. Confirm all details with the event organizer. Last reviewed October 15, 2026.</p>
+      <div class="footer-links"><a href="#start">Back to top</a><a href="https://powerplatformconf.com/" target="_blank" rel="noreferrer">PPCC 2026</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const sessions = [
+      { track: "Government", priority: true, title: "Operationalizing AI in Government: The Journey from Pilot to Production", why: "Public-sector peers on secure scale, responsible AI, monitoring, support models, adoption, and measurable impact.", url: "https://powerplatformconf.com/sessions/Industry-Deep-Dive-%7C-Operationalizing-AI-in-Government%3A-The-Journey-from-Pilot-to-Production" },
+      { track: "Government", priority: true, title: "Government: Autonomy and Governance in the Age of AI and Vibe Coding", why: "Directly addresses decentralized innovation, DLP, environment strategy, lifecycle management, and AI-assisted development in government.", url: "https://powerplatformconf.com/sessions/Industry-Deep-Dive-%7C-Government%3A-Autonomy-and-Governance-in-the-Age-of-AI-and-Vibe-Coding" },
+      { track: "Government", priority: true, title: "Government: Beyond the Hype—Delivering Real Business Value", why: "Customer-led discussion of sustainable value across case management, modernization, contact centers, automation, and AI-assisted processes.", url: "https://powerplatformconf.com/sessions/Industry-Deep-Dive-%7C-Government%3A-Beyond-the-Hype%3A-Delivering-Real-Business-Value" },
+      { track: "Government", priority: true, title: "From Power Platform Developer to Agentic Application Engineer", why: "A federal delivery skills map spanning APIs, identity, Azure Functions, TypeScript, agents, ALM, DevSecOps, and enterprise architecture.", url: "https://powerplatformconf.com/sessions/From-Power-Platform-Developer-to-Agentic-Application-Engineer%3A-The-Technical-Skills-needed-in-Government-IT" },
+      { track: "Secure architecture", title: "Building a Secure Power Platform Architecture with Managed Identity and VNet", why: "High-value DIB pattern: least privilege, private endpoints, managed identity, network isolation, and secure Azure integration.", url: "https://powerplatformconf.com/sessions/Building-a-Secure-Power-Platform-Architecture-with-Managed-Identity-and-VNet" },
+      { track: "Secure architecture", title: "Develop More Secure Dataverse Plug-Ins with VNet Integration and Managed Identities", why: "Practical secure-connectivity patterns for code-first Dataverse extensions that reach Azure and protected resources.", url: "https://powerplatformconf.com/sessions/Develop-More-Secure-Dataverse-Plug-Ins-with-Virtual-Network-Integration-and-Managed-Identities" },
+      { track: "Secure architecture", title: "Improve Your Power Platform Security Posture with Advisor and Security Hub", why: "Useful for turning platform security recommendations into a prioritized hardening backlog.", url: "https://powerplatformconf.com/sessions/Improve-Your-Power-Platform-Security-Posture-with-Advisor-and-Security-Hub" },
+      { track: "Secure architecture", title: "Managing Security in Dataverse", why: "Core access model coverage: roles, privileges, access levels, teams, business units, and record-level controls.", url: "https://powerplatformconf.com/sessions/Managing-Security-in-Dataverse" },
+      { track: "Secure architecture", title: "Right-Size & Secure Your Data Estate", why: "Connects storage, performance, governance, compliance, capacity management, and sustainable Dataverse operations.", url: "https://powerplatformconf.com/sessions/Right-Size-%26-Secure-Your-Data-Estate%3A-Governing-%26-Managing-Dataverse-and-Dynamics-365" },
+      { track: "Secure architecture", title: "Guardians of the Lake: Securing Your Data with OneLake", why: "Relevant for protecting sensitive analytical data through role, row, and column controls across a shared data estate.", url: "https://powerplatformconf.com/sessions/Guardians-of-the-Lake%3A-Securing-Your-Data-with-OneLake" },
+      { track: "Governance", title: "Secure by Design: Preparing Agents for Production and Scale", why: "A security-review lens for moving agents from demo to approved production use.", url: "https://powerplatformconf.com/sessions/Secure-by-Design%3A-Preparing-Agents-for-Production-and-Scale" },
+      { track: "Governance", title: "AI Needs Guardrails: Could Forms Be the Missing Link?", why: "Explores deterministic review and structured human input where generative output alone is too risky.", url: "https://powerplatformconf.com/sessions/AI-Needs-Guardrails%3A-Could-Forms-Be-the-Missing-Link%3F" },
+      { track: "Governance", title: "From Shadow IT to Secure: Implementing Data Policies That Stick", why: "Policy patterns for reducing uncontrolled connectors and environments without stopping mission makers.", url: "https://powerplatformconf.com/sessions/From-Shadow-IT-to-Secure%3A-Implementing-Data-Policies-That-Stick" },
+      { track: "Governance", title: "From Shadow AI to Tightly Managed Agentic Tools", why: "Directly relevant to discovery, oversight, lifecycle controls, and risk reduction for enterprise agent tools.", url: "https://powerplatformconf.com/sessions/From-Shadow-AI-to-Tightly-Managed-Agentic-Tools%E2%80%8B" },
+      { track: "Governance", title: "Agentic Governance: Secure, Govern, and Operate Power Platform at Scale", why: "A post-CoE Starter Kit operating model using platform APIs and automation for governance at scale.", url: "https://powerplatformconf.com/sessions/Agentic-Governance%3A-Secure%2C-Govern%2C-and-Operate-Your-Power-Platform-at-Scale" },
+      { track: "Governance", title: "Agent 365 Unlocked: Building a Secure and Governed Agent Ecosystem", why: "Strategy discussion for inventory, lifecycle, oversight, and controls across a growing agent estate.", url: "https://powerplatformconf.com/sessions/Agent-365-Unlocked%3A-Building-a-Secure-and-Governed-Agent-Ecosystem" },
+      { track: "Governance", title: "Defining Governance for Agent Tools in the Enterprise", why: "Focuses on the tools agents invoke—an essential control surface beyond the agent definition itself.", url: "https://powerplatformconf.com/sessions/Defining-Governance-for-Agent-Tools-in-the-Enterprise" },
+      { track: "Governance", title: "Managed Security: Securing Apps, Automations, and Agents at Scale", why: "A unified security-management view across low-code apps, workflows, and agentic workloads.", url: "https://powerplatformconf.com/sessions/Managed-Security%3A-Securing-and-Governing-Apps%2C-Automations%2C-and-Agents-at-Scale" },
+      { track: "Production", title: "From Black Box to Glass Box: Observability for Your AI Assets", why: "Production readiness through traces, evaluation, telemetry, incident investigation, and operational visibility.", url: "https://powerplatformconf.com/sessions/From-Black-Box-to-Glass-Box%3A-Observability-for-Your-AI-Assets" },
+      { track: "Production", title: "Copilot Managed Runtime: AI-Powered Development with Built-In Governance", why: "Examines managed runtime controls for code-forward development that still needs enterprise policy and operations.", url: "https://powerplatformconf.com/sessions/Microsoft-Copilot-Managed-Runtime%3A-AI-Powered-Development-with-Built-In-Governance" },
+      { track: "Production", title: "DevOps in Power Platform: Build, Deploy and Operate at Enterprise Scale", why: "ALM and operational discipline for repeatable, reviewable deployment across environments.", url: "https://powerplatformconf.com/sessions/DevOps-in-Power-Platform%3A-Build%2C-Deploy-and-Operate-at-Enterprise-Scale" },
+      { track: "Production", title: "Production-Ready Power Pages: Top 10 Secrets for Sites That Scale", why: "External-facing architecture patterns for performance, compliance, security, and scale.", url: "https://powerplatformconf.com/sessions/Production-Ready-Power-Pages%3A-Our-Top-10-Secrets-for-Sites-That-Scale" },
+      { track: "Production", title: "Power Apps + Power Automate: Building Production-Ready Solutions", why: "Practical engineering habits for maintainability, resilience, performance, error handling, and support.", url: "https://powerplatformconf.com/sessions/Power-Apps-%2B-Power-Automate%3A-Best-Practices-for-Building-Production-Ready-Solutions" },
+      { track: "Field & mission", title: "Apps in Every Pocket: The Power Apps Mobile Roadmap", why: "Relevant to frontline and disconnected scenarios where mission users need reliable access beyond the desk.", url: "https://powerplatformconf.com/sessions/Apps-in-Every-Pocket%3A-The-Power-Apps-Mobile-Roadmap" }
+    ];
+
+    const grid = document.querySelector("#session-grid");
+    const search = document.querySelector("#session-search");
+    const filters = [...document.querySelectorAll(".filter")];
+    let activeFilter = "All";
+
+    function renderSessions() {
+      const query = search.value.trim().toLowerCase();
+      const visible = sessions.filter((session) => {
+        const inTrack = activeFilter === "All" || session.track === activeFilter;
+        const inSearch = !query || `${session.title} ${session.why} ${session.track}`.toLowerCase().includes(query);
+        return inTrack && inSearch;
+      });
+
+      grid.replaceChildren();
+      if (!visible.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "No sessions match that filter. Try a broader search.";
+        grid.appendChild(empty);
+        return;
+      }
+
+      visible.forEach((session) => {
+        const card = document.createElement("article");
+        card.className = `session-card${session.priority ? " priority" : ""}`;
+
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = session.priority ? `Priority · ${session.track}` : session.track;
+
+        const title = document.createElement("h3");
+        title.textContent = session.title;
+
+        const why = document.createElement("p");
+        why.textContent = session.why;
+
+        const link = document.createElement("a");
+        link.href = session.url;
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        link.textContent = "View official session →";
+
+        card.append(tag, title, why, link);
+        grid.appendChild(card);
+      });
+    }
+
+    filters.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        filters.forEach((candidate) => candidate.classList.toggle("active", candidate === button));
+        renderSessions();
+      });
+    });
+    search.addEventListener("input", renderSessions);
+    renderSessions();
+
+    const menuButton = document.querySelector(".menu-button");
+    const nav = document.querySelector("#guide-nav");
+    menuButton.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(open));
+    });
+    nav.addEventListener("click", (event) => {
+      if (event.target.matches("a")) {
+        nav.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    const navLinks = [...nav.querySelectorAll("a")];
+    const sections = navLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`));
+        }
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    sections.forEach((section) => observer.observe(section));
+  </script>
+
+
+</body></html>
